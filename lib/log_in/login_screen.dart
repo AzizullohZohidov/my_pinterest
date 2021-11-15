@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_pinterest/log_in/components/heading_text.dart';
+import 'package:my_pinterest/log_in/components/info.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,7 +24,10 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [HeadingText()],
+              children: [
+                const HeadingText(),
+                Credentials(),
+              ],
             ),
           ),
         ),
