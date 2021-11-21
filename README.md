@@ -1,6 +1,6 @@
-# my_pinterest
+# My Pinterest Project
 
-A new Flutter project.
+Simple clone of popular social media Pinterest
 
 ## Getting Started
 
