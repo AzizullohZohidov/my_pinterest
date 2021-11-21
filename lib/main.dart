@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:my_pinterest/home_screen.dart';
 import 'package:my_pinterest/log_in/login_screen.dart';
 
 void main() {
@@ -42,7 +44,9 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.blue,
               scaffoldBackgroundColor: Colors.white,
             ),
-            home: LoginScreen(),
+            home: FirebaseAuth.instance.currentUser == null
+                ? LoginScreen()
+                : HomeScreen(),
           );
         });
   }
