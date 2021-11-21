@@ -155,7 +155,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                         if (imageId == null) {
                           return;
                         }
-                        Fluttertoast.showToast(msg: 'Image Saced to Gallery');
+                        Fluttertoast.showToast(msg: 'Image Saved to Gallery');
                         total = widget.downloads + 1;
                         FirebaseFirestore.instance
                             .collection('wallpaper')
@@ -186,7 +186,20 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                           text: 'Delete',
                           color1: Colors.green,
                           color2: Colors.lightGreen,
-                          press: () {},
+                          press: () async {
+                            FirebaseFirestore.instance
+                                .collection('wallpaper')
+                                .doc(widget.docId)
+                                .delete()
+                                .then((value) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const HomeScreen(),
+                                ),
+                              );
+                            });
+                          },
                         ),
                       )
                     : Container(),
