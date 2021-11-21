@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:my_pinterest/forgot_pasword/forgot_password.dart';
 import 'package:my_pinterest/home_screen.dart';
+import 'package:my_pinterest/log_in/login_screen.dart';
 import 'package:my_pinterest/sign_up/signup_screen.dart';
 import 'package:my_pinterest/widgets/account_check.dart';
 import 'package:my_pinterest/widgets/rectangular_button.dart';
@@ -25,9 +25,11 @@ class Credentials extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: CircleAvatar(
-              radius: 60,
-              //backgroundImage: AssetImage("asset/logo1.png"),
+            child: Center(
+              child: Image.asset(
+                'assets/forget.png',
+                width: 230.0,
+              ),
             ),
           ),
           SizedBox(height: 10.0),
@@ -38,48 +40,17 @@ class Credentials extends StatelessWidget {
             textEditingController: _emailTextController,
           ),
           SizedBox(height: 30.0 / 2),
-          RectangularInputField(
-            hintText: 'Enter Password',
-            icon: Icons.lock,
-            obscureText: true,
-            textEditingController: _passTextController,
-          ),
-          SizedBox(height: 30.0 / 2),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => ForgotPasswordScreen(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ],
-          ),
           RectangularButton(
-            text: 'Login',
+            text: 'Send Link',
             press: () async {
               try {
-                await _auth.signInWithEmailAndPassword(
-                  email: _emailTextController.text.trim().toLowerCase(),
-                  password: _passTextController.text.trim(),
+                await _auth.sendPasswordResetEmail(
+                  email: _emailTextController.text,
                 );
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => HomeScreen(),
+                    builder: (_) => LoginScreen(),
                   ),
                 );
               } catch (error) {
@@ -92,12 +63,12 @@ class Credentials extends StatelessWidget {
             color2: Colors.redAccent,
           ),
           AccountCheck(
-            login: true,
+            login: false,
             press: () {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => SignupScreen(),
+                  builder: (_) => LoginScreen(),
                 ),
               );
             },
