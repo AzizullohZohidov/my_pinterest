@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "234218185577",
+    "project_id": "my-pinterest",
+    "storage_bucket": "my-pinterest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234218185577:android:f563c415a4c041f5ffd3f8",
+        "android_client_info": {
+          "package_name": "com.example.my_pinterest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234218185577-et97u80sldjmdhkrttrubclu0no4mbim.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC061CTPo9tWIPGON8afY7eKJWp1aPJHOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234218185577-et97u80sldjmdhkrttrubclu0no4mbim.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

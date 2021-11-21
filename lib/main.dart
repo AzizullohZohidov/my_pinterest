@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return FutureBuilder(
         future: _initialization,
         builder: (context, snapshot) {
-          /*if (snapshot.connectionState == ConnectionState.waiting) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
             return const MaterialApp(
               debugShowCheckedModeBanner: false,
               home: Scaffold(
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
                 )),
               ),
             );
-          }*/
+          }
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'My Pinterest',

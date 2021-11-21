@@ -1,9 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:my_pinterest/home_screen.dart';
+import 'package:my_pinterest/sign_up/signup_screen.dart';
 import 'package:my_pinterest/widgets/account_check.dart';
 import 'package:my_pinterest/widgets/rectangular_button.dart';
 import 'package:my_pinterest/widgets/rectangular_input_field.dart';
 
 class Credentials extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   late TextEditingController _emailTextController =
       TextEditingController(text: '');
 
@@ -20,7 +26,7 @@ class Credentials extends StatelessWidget {
           Center(
             child: CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage("asset/logo1.png"),
+              //backgroundImage: AssetImage("asset/logo1.png"),
             ),
           ),
           SizedBox(height: 10.0),
@@ -56,13 +62,37 @@ class Credentials extends StatelessWidget {
           ),
           RectangularButton(
             text: 'Login',
-            press: () {},
+            press: () async {
+              try {
+                await _auth.signInWithEmailAndPassword(
+                  email: _emailTextController.text.trim().toLowerCase(),
+                  password: _passTextController.text.trim(),
+                );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => HomeScreen(),
+                  ),
+                );
+              } catch (error) {
+                Fluttertoast.showToast(
+                  msg: error.toString(),
+                );
+              }
+            },
             color1: Colors.red,
             color2: Colors.redAccent,
           ),
           AccountCheck(
             login: true,
-            press: () {},
+            press: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => SignupScreen(),
+                ),
+              );
+            },
           ),
         ],
       ),
